@@ -16,7 +16,7 @@ mongoose.Promise = Promise;
 // Initialize Express
 var app = express();
 
-var PORT = process.env.PORT || 3000;`1`
+var PORT = process.env.PORT || 3000;
 
 // Use morgan and body parser with our app
 app.use(logger("dev"));
@@ -28,11 +28,26 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://heroku_x4ksfndj:pik417fou2dt62bu3r96nu7qej@ds159050.mlab.com:59050/heroku_x4ksfndj");
-var db = mongoose.connection;
+//mongoose.connect("mongodb://heroku_x4ksfndj:pik417fou2dt62bu3r96nu7qej@ds159050.mlab.com:59050/heroku_x4ksfndj");
+//var db = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+var db = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+// Connect mongoose to our database
+mongoose.connect(db, function(error) {
+  // Log any errors connecting with mongoose
+  if (error) {
+    console.log(error);
+  }
+  // Or log a success message
+  else {
+    console.log("mongoose connection is successful");
+  }
+});
 
 // Show any mongoose errors
-db.on("error", function(error) {
+/*db.on("error", function(error) {
   console.log("Mongoose Error: ", error);
 });
 
@@ -40,7 +55,7 @@ db.on("error", function(error) {
 db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
-
+*/
 
 // Routes
 // ======
@@ -153,3 +168,5 @@ app.post("/articles/:id", function(req, res) {
 app.listen(PORT, function() {
   console.log("App running on port" + PORT);
 });
+
+//take JSON and put in html
