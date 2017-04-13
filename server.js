@@ -63,18 +63,19 @@ db.once("open", function() {
 // A GET request to scrape the echojs website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
-  request("http://www.echojs.com/", function(error, response, html) {
+  request("https://www.reddit.com/r/Meerkats/", function(error, response, html) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(html);
     // Now, we grab every h2 within an article tag, and do the following:
-    $("article h2").each(function(i, element) {
+    $("div.link").each(function(i, element) {
 
       // Save an empty result object
       var result = {};
 
       // Add the text and href of every link, and save them as properties of the result object
-      result.title = $(this).children("a").text();
-      result.link = $(this).children("a").attr("href");
+      result.title = $(this).children("a.title").text();
+      result.link = $(this).children("a.title").attr("href");
+      result.photolink = $(this).children("img").attr("src");
 
       // Using our Article model, create a new entry
       // This effectively passes the result object to the entry (and the title and link)
