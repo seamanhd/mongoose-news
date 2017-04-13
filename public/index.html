@@ -3,8 +3,11 @@
   <head>
     <meta charset="UTF-8">
     <title>Scraping With Mongoose</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <style>
-      body { background-color: #F2F6D0 }
+      body { 
+        font-family: 'Montserrat', sans-serif;
+        background-color: #C9DBDD }
       #wrapper {
         width: 960px;
         margin-left: auto;
@@ -14,12 +17,52 @@
       #articles {
         display: inline-block;
         overflow: auto;
-        width: 60%;
+        width: 80%;
         height: 700px;
       }
+      h1 {
+        font-size: 42px;
+        text-align: center;
+        color: #218380;
+        background-color: #FFBC42;
+      }
+      h2 {
+        font-size: 24;
+        text-align: center;
+        color: #D81159;
+      }
+      hr {
+        border-top: 1px solid #FFBC42;
+        border-bottom: none;
+        margin-bottom: 20px;
+      }
+      button {
+          display: inline-block;
+          width: 31%;
+          margin: 0 10px 0 0;
+          padding: 10px;
+          font-size: 18px;
+          line-height: 1.8;
+          appearance: none;
+          box-shadow: none;
+          border-radius: 0;
+          border: none;
+          color: #fff;
+      }
+      #first {
+          margin-left: 15px;
+          background-color: #218380;
+      }
+      #second {
+          background-color: #D81159;
+      }
+      #third {
+          background-color: #FFBC42;
+      }
+      p {
+        color: #218380;
+      }
       #notes {
-        float: right;
-        width: 30%;
       }
       textarea, input {
         display: block;
@@ -34,12 +77,18 @@
         height: 200px;
         font-size: 18px;
       }
+      .button-link {
+        text-decoration: none;
+        color: #fff;
+      }
     </style>
   </head>
   <body>
     <div id="wrapper">
-      <h1>Note Scraper</h1>
-      <h2><i>If you can do this...the homework should be no problem.</i></h2>
+      <h1>MONGOOSE NEWS</h1>
+      <h2><i>This is actually meerkat news, but close enough right?</i></h2>
+      <hr>
+      <button id="first"> SHOW ME THE NEWS </button> <button id="second"> FEELING LUCKY </button> <button id="third"> <a class="button-link" href="https://www.reddit.com/r/Meerkats/"> MORE MEERKATS </a></button>
       <div id="articles"></div>
       <div id="notes"></div>
     </div>
