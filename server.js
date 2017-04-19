@@ -73,9 +73,9 @@ app.get("/scrape", function(req, res) {
       var result = {};
 
       // Add the text and href of every link, and save them as properties of the result object
-      result.title = $(this).children("a.title").text();
-      result.link = $(this).children("a.title").attr("href");
-      result.photolink = $(this).children("img").attr("src");
+      result.title = $(this).find("a.title").text();
+      result.link = $(this).find("a.title").attr("href");
+      result.photolink = $(this).find("img").attr("src");
 
       // Using our Article model, create a new entry
       // This effectively passes the result object to the entry (and the title and link)
@@ -170,4 +170,5 @@ app.listen(PORT, function() {
   console.log("App running on port" + PORT);
 });
 
-//take JSON and put in html
+//put the scrape function in a module, then use the on click to run the scrape route, and save info
+//
